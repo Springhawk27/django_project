@@ -1,0 +1,37 @@
+{%extends 'base.html' %} {% block content %}
+<body>
+  <h1>Welcome to our site: {{user_name}}</h1>
+  <p>Subject List</p>
+  {%for value in subjects %}
+  <li>{{value}}</li>
+  {% endfor %} {% if registration_open %}
+  <p>Registration is open</p>
+  {% endif %}
+
+  <form action="" method="post">
+    {% csrf_token %}
+    <label for="fname">First name:</label><br />
+    <input type="text" id="fname" name="fname" /><br />
+    <label for="lname">Last name:</label><br />
+    <input type="text" id="lname" name="lname" /><br />
+    <label for="email">Email:</label><br />
+    <input type="text" id="email" name="email" /><br />
+    <button type="submit" id="form_submit" name="form">Submit</button>
+  </form>
+
+  <form action="" method="post">
+    {% csrf_token %}
+    <label for="is_interested">Are you interested</label><br />
+    <input type="text" id="is_interested" name="is_interested" /><br />
+    <button type="submit" id="form_submit2" name="form2">
+      Submit your interest
+    </button>
+  </form>
+
+  {% if email %}
+  <p>We have received the data</p>
+  <p>First Name: {{user_name}}</p>
+  <p>Email: {{email}}</p>
+  {% endif %}
+</body>
+{%endblock%}
